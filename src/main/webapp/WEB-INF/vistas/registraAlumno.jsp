@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html lang="esS" >
 <head>
@@ -7,6 +6,8 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+
 <link rel="stylesheet" href="css/bootstrap.css"/>
 <link rel="stylesheet" href="css/bootstrapValidator.css"/>
 <title>Ejemplos de CIBERTEC - Jorge Jacinto </title>
@@ -16,15 +17,7 @@
 <div class="container">
 <h1>Registra Alumno</h1>
 
-	<c:if test="${sessionScope.MENSAJE != null}">
-		<div class="alert alert-success fade in" id="success-alert">
-		 <a href="#" class="close" data-dismiss="alert">&times;</a>
-		 <strong>${sessionScope.MENSAJE}</strong>
-		</div>
-	</c:if>
-	<c:remove var="MENSAJE" />
-	
-	<form action="registroDeAlumno" id="id_form"> 
+	<form id="id_form"> 
 
 			<div class="form-group">
 				<label class="control-label" for="id_nombre">Nombre</label>
@@ -43,27 +36,31 @@
 			
 			<div class="form-group">
 				<label class="control-label" for="id_fecha">Fecha de Nacimiento</label>
-				<input class="form-control" type="date" id="id_fecha" name="fechaNacimiento" >    
+				<input class="form-control" type="date" id="id_fecha" name="fechaNacimiento" placeholder="Ingrese la fecha" maxlength="100">    
 			</div>
 			
-		 	
+			
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary" >Crea Alumno</button>
+				<button id="id_registrar" type="button" class="btn btn-primary" >Crea Alumno</button>
 			</div>
 	</form>
 </div>
 
 <script type="text/javascript">
-$("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
-    $("#success-alert").slideUp(500);
+
+$("#id_registrar").click(function (){ 
+
+
 });
-</script>
 
-<!-- 
-	https://mkyong.com/tutorials/java-regular-expression-tutorials/
 
- -->
-<script type="text/javascript">
+function limpiar(){
+	$('#id_nombre').val('');
+	$('#id_dni').val('');
+	$('#id_correo').val('');
+	$('#id_fecha').val('');
+}
+
 $(document).ready(function() {
     $('#id_form').bootstrapValidator({
         message: 'This value is not valid',
@@ -114,17 +111,13 @@ $(document).ready(function() {
                     validators:{
                         notEmpty: {
                              message: 'La fecha es obligatorio'
-                        },
+                        }
                     }
                 },
-                
         }   
     });
 
-    // Validate the form manually
-    $('#validateBtn').click(function() {
-        $('#id_form').bootstrapValidator('validate');
-    });
+    
 });
 </script>
 
