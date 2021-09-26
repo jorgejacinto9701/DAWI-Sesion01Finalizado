@@ -1,4 +1,4 @@
-# DAWI-Sesion01Inicio 
+# DAWI-Sesion01Finalizado
 ### Registro en una tabla mediante JPA
 
 ## Autor ✒️
